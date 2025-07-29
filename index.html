@@ -1,1 +1,74 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mohab Mohamed - Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="language-switch">
+        <button onclick="switchLanguage()">🌐 Switch Language</button>
+    </div>
+    <header>
+        <img src="banner.png" alt="Mohab Mohamed" class="banner">
+        <h1 id="typewriter"></h1>
+        <p id="intro-text">Junior programmer from Egypt - Learning HTML, CSS, C++, and training in Python and Java</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="scholarship.html">Scholarship</a>
+    </nav>
+
+    <section class="skills">
+        <h2 id="skills-title">My Skills</h2>
+        <ul id="skills-list">
+            <li>HTML & CSS</li>
+            <li>C++</li>
+            <li>Python (in progress)</li>
+            <li>Java (in progress)</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>© 2025 - Mohab Mohamed</p>
+    </footer>
+
+    <script>
+        let text_en = "Hi, I'm Mohab Mohamed";
+        let text_ar = "مرحبًا، أنا مهاب محمد";
+        let index = 0;
+        let lang = "en";
+
+        function typeWriter() {
+            let text = lang === "en" ? text_en : text_ar;
+            let target = document.getElementById("typewriter");
+            if (index < text.length) {
+                target.innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+
+        function switchLanguage() {
+            lang = lang === "en" ? "ar" : "en";
+            document.body.dir = lang === "ar" ? "rtl" : "ltr";
+            document.getElementById("intro-text").innerText = lang === "en"
+                ? "Junior programmer from Egypt - Learning HTML, CSS, C++, and training in Python and Java"
+                : "مبرمج ناشئ من مصر - أتعلم HTML و CSS و C++ وأتدرب على بايثون وجافا";
+            document.getElementById("skills-title").innerText = lang === "en" ? "My Skills" : "مهاراتي";
+            document.getElementById("skills-list").innerHTML = lang === "en"
+                ? "<li>HTML & CSS</li><li>C++</li><li>Python (in progress)</li><li>Java (in progress)</li>"
+                : "<li>HTML و CSS</li><li>C++</li><li>Python (تحت التدريب)</li><li>Java (تحت التدريب)</li>";
+            document.getElementById("typewriter").innerText = "";
+            index = 0;
+            typeWriter();
+        }
+
+        window.onload = typeWriter;
+    </script>
+</body>
+</html>
